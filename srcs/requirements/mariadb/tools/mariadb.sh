@@ -9,9 +9,6 @@ until mysqladmin ping -h "127.0.0.1" --silent; do
     sleep 1
 done
 
-# echo "<-----1---->"
-# mysqlshow -u root
-
 # Configuration initiale (seulement si la DB n'existe pas déjà)
 if [ ! -d "/var/lib/mysql/${MYSQL_DATABASE}" ]; then
     echo "Configuration de la base de données..."
@@ -26,8 +23,6 @@ if [ ! -d "/var/lib/mysql/${MYSQL_DATABASE}" ]; then
     mysql -e "GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO \`${MYSQL_USER}\`@'%';"
 
 fi
-# echo "<-----2---->"
-# mysqlshow -u root
 
 echo "MariaDB est prêt et configuré !"
 

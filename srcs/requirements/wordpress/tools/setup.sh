@@ -17,7 +17,6 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
     wp config set DB_USER "${MYSQL_USER}" --allow-root
     wp config set DB_PASSWORD "${MYSQL_PASSWORD}" --allow-root
     wp config set DB_HOST "mariadb" --allow-root
-    echo "hhhhhh"
 
     wp core install \
         --url="${DOMAIN_NAME}" \
