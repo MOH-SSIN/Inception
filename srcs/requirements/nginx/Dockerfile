@@ -21,7 +21,4 @@ COPY conf/nginx.conf /etc/nginx/sites-available/default
 
 RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
-RUN echo "<h1>I LOVE YOU <3 </h1>" > /var/www/html/wlcm.html
-
 CMD ["nginx", "-g", "daemon off;"]
-# ENTRYPOINT ["nginx", "-g", "daemon off;"]
