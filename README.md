@@ -62,45 +62,31 @@ cd inception
 
 **3. Ensure the data directory path matches your system :**
 
-Create the `secrets/` directory at the root of the repository and populate the following files:
+   - Edit the `Makefile` and update `/home/login` to match your home directory
+   - Edit `srcs/docker-compose.yml` and update all volume source paths
 
-```
-secrets/
-├── db_password.txt          # MariaDB user password
-├── db_root_password.txt     # MariaDB root password
-├── wp_admin_password.txt    # WordPress admin password
-├── wp_user_password.txt     # WordPress regular user password
-└── ftp_pass.txt             # FTP user password
-```
-
-Example:
-```bash
-mkdir -p secrets
-echo "MySuperSecretDbPass!" > secrets/db_password.txt
-```
-
-**4. Configure your `.env` file:**
-
-```bash
-cp srcs/.env.example srcs/.env
-# Then edit the values to match your setup
-```
+**4. Configure your `srcs/.env` file:**
 
 Key variables:
 
 ```env
-DOMAIN_NAME=<your_login>.42.fr
-MYSQL_DATABASE=wordpress
-MYSQL_USER=<your_login>
-WP_ADMIN_USER=<your_login>
-WP_USER=soufiane
-DATA_PATH=/home/<your_login>/data
-```
+# Domain & Database Info
+DOMAIN_NAME=your-login.42.fr
+MYSQL_DATABASE=wordpress_db
+MYSQL_USER=wp_user
+MYSQL_PASSWORD=strong_password
+MYSQL_ROOT_PASSWORD=root_password
 
-**5. Update data path in `Makefile`:**
+# WordPress Admin
+WP_ADMIN_USER=admin_user
+WP_ADMIN_PASSWORD=admin_password
+WP_ADMIN_EMAIL=admin@example.com
 
-```makefile
-DATA_PATH = /home/<your_login>/data
+# WordPress Normal User
+WP_USER=normal_user
+WP_USER_EMAIL=user@example.com
+WP_USER_PASSWORD=user_password
+
 ```
 
 ### Build and Run
@@ -112,17 +98,12 @@ make        # Build all images and start services
 All other available commands:
 
 ```bash
-make up        # Start containers (without rebuilding)
-make down      # Stop all running containers
-make restart   # Restart the entire stack
-make logs      # Tail container logs
-make status    # Display current container status
-make clean     # Stop containers and prune unused Docker resources
-make fclean    # Full cleanup — removes ALL data and volumes
-make re        # fclean + full rebuild from scratch
+make all     # Default target → same as "make up"
+make up      # Create folders + build and start containers
+make down    # Stop and remove containers (docker compose down)
+make fclean  # Stop containers + remove Docker unused data + delete /home/mez-zahi/data
+make re      # Full reset (fclean + rebuild everything from scratch)
 ```
-
-> ⚠️ `make fclean` is **destructive** — it deletes all persistent data.
 
 ### Access the Services
 
@@ -131,11 +112,7 @@ Once running, access the services at:
 | Service          | URL                                         |
 |------------------|---------------------------------------------|
 | WordPress        | `https://<your_login>.42.fr`                |
-| Adminer          | `https://adminer.<your_login>.42.fr`        |
-| Static Site      | `https://static.<your_login>.42.fr`         |
-| Portainer        | `https://localhost:9443`                    |
-| FTP              | `ftp://localhost:21`                        |
 
-> 🔐 Credentials are stored in the `secrets/` directory — never committed to git.
+> 🔐 Credentials are stored in the `srcs/.env` file — never committed to git.
 
 ---
