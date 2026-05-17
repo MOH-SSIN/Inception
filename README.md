@@ -181,6 +181,59 @@ Once running, access the services at:
 
 > 🔐 Credentials are stored in the `srcs/.env` file — never committed to git.
 
+==> ici je dois faire les secrets
+
+---
+
+## Resources
+
+### Docker & Containers
+
+- [Docker Official Documentation](https://docs.docker.com/)
+- [Docker Compose Reference](https://docs.docker.com/compose/)
+- [Dockerfile Best Practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+- [Docker Networking Guide](https://docs.docker.com/network/)
+- [Docker Volumes](https://docs.docker.com/storage/volumes/)
+- [Docker Secrets (Swarm)](https://docs.docker.com/engine/swarm/secrets/)
+- [OCI Container Specs](https://specs.opencontainers.org/)
+
+### Services
+
+- [NGINX Documentation](https://nginx.org/en/docs/)
+- [WordPress CLI (WP-CLI)](https://wp-cli.org/)
+- [MariaDB Knowledge Base](https://mariadb.com/kb/en/documentation/)
+- [PHP-FPM Configuration](https://www.php.net/manual/en/install.fpm.php)
+
+### Security
+
+- [Mozilla TLS Best Practices](https://wiki.mozilla.org/Security/Server_Side_TLS)
+- [Docker Security Overview](https://docs.docker.com/engine/security/)
+- [Linux Namespaces (containers internals)](https://blog.quarkslab.com/)
+
+### Learning
+
+- [iximiuz Labs — Interactive Docker & K8s labs](https://labs.iximiuz.com/)
+- [Alex Ellis' Blog — Docker & serverless](https://blog.alexellis.io/)
+- [Play with Docker (browser-based)](https://labs.play-with-docker.com/)
+
+---
+
+## AI Usage
+
+AI tools were used during this project to help with learning, debugging, and improving the infrastructure setup.
+
+- **Configuration Help** — AI helped me understand and create some configuration files for NGINX, PHP-FPM, MariaDB, and WordPress.
+
+- **Debugging Support** — AI assisted me when I had problems with Docker containers, networking, volumes, and service communication.
+
+- **Learning & Research** — AI was used to quickly understand Docker, Docker Compose, Debian configuration, and best practices related to system administration.
+
+- **Script Review** — AI helped review some shell scripts and Dockerfiles to detect possible mistakes and improve readability.
+
+- **Documentation Assistance** — AI was used to help organize and improve the README documentation and project explanations.
+
+All generated suggestions were reviewed, tested, and adapted manually to make sure they worked correctly and respected the project requirements.
+
 ---
 
 ## Project Description
@@ -350,3 +403,4 @@ Below is a summary of the key technical decisions made in this project and the r
 - **Security** — each service exposes only what it needs, nothing more
 
 ---
+
