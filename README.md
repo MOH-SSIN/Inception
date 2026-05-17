@@ -40,7 +40,7 @@
     - [Build and Run](#build-and-Run)
     - [Access the Services](#access-the-services)
 - [Resources](#resources)
-    - [Docker & Containers](#docker&containers)
+    - [Docker and Containers](#docker-and-containers)
     - [Services](#services)
     - [Security](#security)
     - [Learning](#learning)
@@ -212,7 +212,7 @@ Once running, access the services at:
 
 ## Resources
 
-### Docker & Containers
+### Docker and Containers
 
 - [Docker Official Documentation](https://docs.docker.com/)
 - [Docker Compose Reference](https://docs.docker.com/compose/)
