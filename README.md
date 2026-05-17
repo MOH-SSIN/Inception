@@ -182,3 +182,18 @@ Once running, access the services at:
 > 🔐 Credentials are stored in the `srcs/.env` file — never committed to git.
 
 ---
+
+## Project Description
+
+### What is Docker and why use it here?
+
+**Docker** is a platform that packages applications and all their dependencies into lightweight, isolated units called **containers**. A container bundles the OS libraries, runtime, configuration files, and application code together — ensuring the service behaves identically regardless of the host machine.
+
+In this project, each service (NGINX, WordPress, MariaDB) runs in its **own container**, built from a custom `Dockerfile`. Docker Compose defines, links, and orchestrates all containers together using a single `docker-compose.yml` file.
+
+This approach provides:
+
+- **Isolation** — a problem in one container cannot directly affect another
+- **Reproducibility** — the entire infrastructure can be rebuilt identically from scratch at any time
+- **Portability** — the stack runs the same way on any Linux machine
+- **Security** — each service exposes only what it needs, nothing more
