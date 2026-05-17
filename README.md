@@ -29,8 +29,8 @@
 - [Description](#description)
 - [Architecture Overview](#architecture-overview)
 - [Instructions](#instructions)
-- [Project Description](#project-description)
 - [Resources](#resources)
+- [Project Description](#project-description)
 
 ---
 
