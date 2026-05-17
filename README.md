@@ -32,7 +32,44 @@ Inception is a system administration project that focuses on Docker containeriza
 
 The main goal is to understand Docker concepts, container networking, volume management, secrets handling, and service orchestration while following security best practices.
 
-### Overview
+### Architecture Overview
+
+The project follows a Microservices Architecture where each component is isolated within a private Docker Bridge Network. As shown in the schema, the infrastructure is designed so that only the web server is exposed to the external world, ensuring a high level of security.
+
+```
+                                                                        WWW (Internet)
+                                                                            │
+                                                                            │[Port 443]
+                                                                            │
+    ┌─────────────────────────────────────────────────────────────────────────────────────┐
+    │ Computer HOST                                                         │             │
+    │                                                                       │             │
+    │   ┌─────────────────────────────────────────────────────────────────────────────┐   │
+    │   │ Docker Network (inception)                                        │         │   │
+    │   │                                                                   ▼         │   │
+    │   │  ┌──────────┐      [3306]      ┌───────────┐      [9000]      ┌──────────┐  │   │
+    │   │  │ Container│ <──────────────> │ Container │ <──────────────> │ Container│  │   │
+    │   │  │    DB    │                  │  WP + PHP │                  │   NGINX  │  │   │
+    │   │  └────┬─────┘                  └─────┬─────┘                  └──────────┘  │   │
+    │   │       │                              │                                      │   │
+    │   └───────┼──────────────────────────────┼──────────────────────────────────────┘   │
+    │           │                              │                                          │
+    │     ┌─────┴─────┐                  ┌─────┴─────┐                                    │
+    │     │  Volume   │                  │  Volume   │                                    │
+    │     │    DB     │                  │ WordPress │                                    │
+    │     └───────────┘                  └───────────┘                                    │
+    └─────────────────────────────────────────────────────────────────────────────────────┘
+
+```
+
+**Request flow (step by step):**
+
+1. A browser sends an HTTPS request to `https://<your_login>.42.fr`
+2. NGINX receives the request on port `443`, terminates TLS, and checks the URL
+3. If it is a PHP file, NGINX forwards the request to WordPress via **FastCGI** on port `9000`
+4. WordPress processes the PHP and queries MariaDB on port `3306` to fetch content
+5. MariaDB returns the requested data to WordPress
+6. WordPress generates the final HTML response, which NGINX sends back to the browser
 
 ---
 
