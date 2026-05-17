@@ -60,6 +60,10 @@ The project follows a Microservices Architecture where each component is isolate
     │     └───────────┘                  └───────────┘                                    │
     └─────────────────────────────────────────────────────────────────────────────────────┘
 
+    Host machine:
+        /home/<your_login>/data/wordpress/  ←──── WordPress volume (bind mount)
+        /home/<your_login>/data/mariadb/    ←──── MariaDB volume  (bind mount)
+
 ```
 
 **Request flow (step by step):**
