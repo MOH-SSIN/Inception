@@ -228,7 +228,7 @@ Once running, access the services at:
 
 ---
 
-## AI Usage
+### AI Usage
 
 AI tools were used during this project to help with learning, debugging, and improving the infrastructure setup.
 
