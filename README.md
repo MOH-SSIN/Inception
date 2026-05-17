@@ -31,6 +31,7 @@
 ## Table of Contents
 
 - [Description](#description)
+    - [Overview](#overview)
     - [Architecture Overview](#architecture-overview)
 - [Instructions](#instructions)
 - [Resources](#resources)
