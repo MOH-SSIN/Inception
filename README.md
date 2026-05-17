@@ -34,6 +34,11 @@
     - [Overview](#overview)
     - [Architecture Overview](#architecture-overview)
 - [Instructions](#instructions)
+    - [Prerequisites](#prerequisites)
+    - [Project Structure](#project-structure)
+    - [Installation](#installation)
+    - [Build and Run](#build-and-Run)
+    - [Access the Services](#access-the-services)
 - [Resources](#resources)
 - [Project Description](#project-description)
 
