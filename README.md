@@ -329,7 +329,7 @@ These directories are created by the `Makefile` before Docker Compose starts. Al
 
 Below is a summary of the key technical decisions made in this project and the reasoning behind each:
 
-- **Alpine Linux as base image** — Alpine is a minimal Linux distribution (~5 MB). It has a small attack surface, fast installation, and produces lightweight final images. All 3 containers use Alpine as their base.
+- **Debian as base image** — Debian is a stable and widely used Linux distribution. It provides strong package support, reliability, and compatibility for server environments. All containers in this project are built using Debian as their base image.
 
 - **TLSv1.2 and TLSv1.3 only** — NGINX is configured to accept only modern TLS versions. Older protocols (TLSv1.0, TLSv1.1, SSLv3) are disabled because of well-known vulnerabilities (POODLE, BEAST). A self-signed certificate is generated at build time using `openssl`.
 
@@ -343,9 +343,10 @@ Below is a summary of the key technical decisions made in this project and the r
 
 - **Single external entry point** — Only the NGINX container has `ports: - "443:443"`. WordPress (`9000`) and MariaDB (`3306`) are never reachable from outside the Docker network. This enforces a clear perimeter.
 
-- **`restart: unless-stopped`** — All containers are configured to restart automatically if they exit unexpectedly, unless the operator explicitly stops them. This makes the infrastructure self-healing under normal failure conditions.
+- **`restart: always`** — All containers are configured to restart automatically whenever they stop or crash. This helps keep the infrastructure continuously available and ensures services start again after failures or system reboots.
 
 - **WP-CLI for automated WordPress setup** — The WordPress container uses [WP-CLI](https://wp-cli.org/) in its entrypoint script to fully automate the WordPress installation (`wp core install`), create both the admin and the regular user, and configure the database connection — with no manual browser interaction required.
 
----
 - **Security** — each service exposes only what it needs, nothing more
+
+---
