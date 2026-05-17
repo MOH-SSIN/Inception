@@ -28,3 +28,17 @@
 Inception is a system administration project that focuses on Docker containerization and orchestration. The project involves setting up a complete web infrastructure using Docker Compose, with multiple services running in isolated containers. The infrastructure includes a WordPress website with a MariaDB database and an NGINX reverse proxy with TLS encryption.
 
 The main goal is to understand Docker concepts, container networking, volume management, secrets handling, and service orchestration while following security best practices.
+
+---
+
+## Instructions
+
+### Prerequisites
+
+Before starting, make sure you have:
+
+- A **Virtual Machine** running a Linux distribution (Alpine or Debian recommended)
+- **Docker** and **Docker Compose** installed
+- `sudo` or root access
+- Minimum: **4 GB RAM** and **20 GB** free disk space
+- `make` installed on the system
