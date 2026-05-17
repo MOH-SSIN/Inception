@@ -97,16 +97,16 @@ Before starting, make sure you have:
 └── srcs                    # The "brain" of the project containing all source files.
     ├── .env                    # Private file containing passwords and sensitive configurations.
     ├── docker-compose.yml      # The master plan that connects all containers together.
-    └── requirements                # The specific folders for each service:
-        ├── mariadb                     # Database service:
-        │   ├── Dockerfile                  # Instructions to build the MariaDB image.
-        │   └── tools/mariadb.sh            # Script to initialize the database and users.
-        ├── nginx                       # Web server service:
-        │   ├── Dockerfile                  # Instructions to build the NGINX image.
-        │   └── conf/nginx.conf             # Rules for HTTPS and website handling.
-        └── wordpress                   # Website service:
-            ├── Dockerfile                  # Instructions to build the WordPress image.
-            └── tools/setup.sh              # Script to download and install WordPress automatically.
+    └── requirements            # The specific folders for each service:
+        ├── mariadb                 # Database service:
+        │   ├── Dockerfile              # Instructions to build the MariaDB image.
+        │   └── tools/mariadb.sh        # Script to initialize the database and users.
+        ├── nginx                   # Web server service:
+        │   ├── Dockerfile              # Instructions to build the NGINX image.
+        │   └── conf/nginx.conf         # Rules for HTTPS and website handling.
+        └── wordpress               # Website service:
+            ├── Dockerfile              # Instructions to build the WordPress image.
+            └── tools/setup.sh          # Script to download and install WordPress automatically.
 
 ```
 
