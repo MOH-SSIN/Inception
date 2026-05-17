@@ -46,6 +46,12 @@
     - [Learning](#learning)
     - [AI Usage](#ai-usage)
 - [Project Description](#project-description)
+    - [What is Docker and why use it here?](#what-is-docker-and-why-use-it-here?)
+    - [Virtual Machines vs Docker](#virtual-machines-vs-docker)
+    - [Secrets vs Environment Variables](#secrets-vs-environment-variables)
+    - [Docker Network vs Host Network](#docker-network-vs-host-network)
+    - [Docker Volumes vs Bind Mounts](#docker-volumes-vs-bind-mounts)
+    - [Main Design Choices](#main-design-choices)
 
 ---
 
