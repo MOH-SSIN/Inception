@@ -90,8 +90,6 @@ posts, pages, comments, users, settings, and plugin data.
 
 ## Getting Started
 
-## Getting Started
-
 ### Prerequisites
 
 Before you start, make sure the following are in place on your machine or Virtual Machine:
@@ -118,3 +116,7 @@ secrets/
 ```
 
 If any of these files are missing, refer to the **DEV_DOC.md** to set up the environment from scratch.
+
+### Starting the Project
+
+All commands must be run from the **root of the repository** (the `inception/` folder).
