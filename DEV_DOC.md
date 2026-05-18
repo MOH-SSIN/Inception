@@ -187,3 +187,26 @@ docker compose down
 docker compose ps
 ```
 
+### Build Process Details
+
+When you run `make build`, the following happens:
+
+1. **Directory Creation**: Creates persistent data directories
+   ```bash
+   mkdir -p /home/YOUR_USERNAME/data/mariadb
+   mkdir -p /home/YOUR_USERNAME/data/wordpress
+   mkdir -p /home/YOUR_USERNAME/data/portainer
+   ```
+
+2. **Ownership Assignment**: Sets proper ownership
+   ```bash
+   chown -R 1337:1337 /home/YOUR_USERNAME/data/wordpress  # www user
+   chown -R 999:999 /home/YOUR_USERNAME/data/mariadb      # mysql user
+   ```
+
+3. **Image Building**: Builds each service's Docker image
+   - Reads each Dockerfile
+   - Downloads Alpine Linux base image
+   - Installs required packages
+   - Copies configuration files
+   - Sets up entrypoints
