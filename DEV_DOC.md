@@ -257,3 +257,38 @@ docker stop <container_name>
 docker rm <container_name>
 ```
 
+**This project uses bind mounts, not Docker volumes**. Data locations:
+
+- **MariaDB data**: `/home/YOUR_USERNAME/data/mariadb`
+- **WordPress files**: `/home/YOUR_USERNAME/data/wordpress`
+
+**Check data directory sizes**:
+```bash
+du -sh /home/YOUR_USERNAME/data/*
+```
+
+**Backup data directories**:
+```bash
+sudo tar -czf backup-$(date +%Y%m%d).tar.gz /home/YOUR_USERNAME/data/
+```
+
+### Network Management
+
+**List networks**:
+```bash
+docker network ls
+```
+
+**Inspect the inception network**:
+```bash
+docker network inspect inception
+```
+
+**Check container connectivity**:
+```bash
+# From inside a container
+docker exec -it wordpress sh
+ping mariadb
+ping redis
+ping nginx
+```
