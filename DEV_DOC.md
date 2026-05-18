@@ -292,3 +292,20 @@ ping mariadb
 ping redis
 ping nginx
 ```
+---
+
+## Project Data Storage and Persistence
+
+### Data Persistence Strategy
+
+The project uses **bind mounts** to persist data on the host filesystem:
+
+```yaml
+volumes:
+  mariadb-data:
+    driver: local
+    driver_opts:
+        type: none
+        o: bind
+        device: /home/${USER}/data/mariadb
+```
