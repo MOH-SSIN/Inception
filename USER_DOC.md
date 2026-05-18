@@ -8,6 +8,7 @@
 
 ## Table of Contents
 
+<div align="center">
 - [Overview](#overview)
 - [Getting Started](#getting-started)
 - [Accessing Services](#accessing-services)
@@ -28,7 +29,7 @@
   - [Restore the Database from Backup](#restore-the-database-from-backup)
   - [Check Disk Usage](#check-disk-usage)
 - [Troubleshooting](#troubleshooting)
-
+</div>
 ---
 
 ## Overview
