@@ -420,3 +420,86 @@ docker compose -f srcs/docker-compose.yml exec mariadb \
   mysqladmin -u root -p$(cat secrets/db_root_password.txt) status
 # Expected: Uptime: ..., Threads: ..., Questions: ..., etc.
 ```
+
+---
+
+## Common Tasks
+
+### Back Up Your WordPress Files
+
+```bash
+sudo tar -czf wordpress-backup-$(date +%Y%m%d).tar.gz \
+  /home/<your_login>/data/wordpress
+```
+
+This creates a compressed archive of all WordPress files (themes, plugins, uploads, core).
+
+---
+
+### Back Up the Database
+
+Run a database dump directly from the MariaDB container:
+
+```bash
+docker compose -f srcs/docker-compose.yml exec mariadb \
+  mysqldump -u root -p$(cat secrets/db_root_password.txt) wordpress \
+  > backup-db-$(date +%Y%m%d).sql
+```
+
+This creates a `.sql` file containing the full contents of the WordPress database.
+
+---
+
+### Restore WordPress Files from Backup
+
+```bash
+make down
+sudo rm -rf /home/<your_login>/data/wordpress/*
+sudo tar -xzf wordpress-backup-YYYYMMDD.tar.gz -C /
+make up
+```
+
+---
+
+### Restore the Database from Backup
+
+```bash
+docker compose -f srcs/docker-compose.yml exec -T mariadb \
+  mysql -u root -p$(cat secrets/db_root_password.txt) wordpress \
+  < backup-db-YYYYMMDD.sql
+```
+
+---
+
+### Check Disk Usage
+
+```bash
+# Check how much space the data directories use
+du -sh /home/<your_login>/data/wordpress/
+du -sh /home/<your_login>/data/mariadb/
+
+# Check Docker's overall disk usage
+docker system df
+```
+
+---
+
+## Troubleshooting
+
+### SSL Certificate Warning — Is it dangerous?
+
+No. The warning appears because the certificate is **self-signed** (not from a trusted authority like Let's Encrypt).
+This is expected in a local 42 project environment.
+
+- The connection is still **fully encrypted** with TLSv1.2 or TLSv1.3
+- The only difference from a "trusted" certificate is that no authority has verified the domain name
+
+To proceed: click **"Advanced"** → **"Proceed to site"** in your browser.
+
+---
+
+<div align="center">
+
+For developer documentation (environment setup, Makefile internals, Docker Compose structure), see **DEV_DOC.md**.
+
+</div>
