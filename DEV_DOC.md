@@ -1244,7 +1244,6 @@ A quick reference for the most common operations during development.
 make                    # Build and start everything
 make up                 # Start without rebuilding
 make down               # Stop all containers (data safe)
-make restart            # Restart all containers
 make re                 # Full wipe and rebuild from scratch
 make logs               # Stream all logs live
 make status             # Quick overview of all containers
