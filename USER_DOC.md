@@ -132,3 +132,20 @@ make
 ```
 This command builds the Docker images (if not already built) and starts all 3 containers.
 
+**What happens step by step:**
+
+| Step | What Docker does                                                         |
+|------|--------------------------------------------------------------------------|
+| 1    | Creates the data directories on the host if they don't exist yet         |
+| 2    | Builds the 3 Docker images (NGINX, WordPress, MariaDB) from Dockerfiles  |
+| 3    | Starts MariaDB first — initializes the database, user, and permissions   |
+| 4    | Starts WordPress — waits for MariaDB, then installs WordPress via WP-CLI |
+| 5    | Starts NGINX — begins accepting HTTPS connections on port 443            |
+
+> The **first build** takes 2 to 5 minutes depending on your machine and internet speed.
+> All subsequent starts are much faster since images are already built.
+
+Once all containers are up, verify everything is running:
+
+```bash
+make status
