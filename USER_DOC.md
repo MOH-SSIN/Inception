@@ -198,3 +198,157 @@ Equivalent to running `make fclean` followed by `make`.
 All images are rebuilt and the stack is started fresh with a clean database.
 
 ---
+
+## Accessing Services
+
+### WordPress Website
+
+Once the stack is running, open your browser and go to:
+
+```
+https://<your_login>.42.fr
+```
+
+**The browser shows a security warning — is that normal?**
+
+Yes, this is completely expected.
+The TLS certificate is **self-signed** (generated locally) and not issued by a trusted Certificate Authority.
+Browsers always warn about self-signed certificates.
+
+**How to bypass the warning:**
+
+| Browser             | Steps                                                              |
+|---------------------|--------------------------------------------------------------------|
+| **Chrome**          | Click **"Advanced"** → **"Proceed to \<your_login\>.42.fr"**      |
+| **Firefox**         | Click **"Advanced..."** → **"Accept the Risk and Continue"**       |
+| **Safari**          | Click **"Show Details"** → **"visit this website"** → **"Visit"** |
+
+After clicking through once, the browser remembers your choice for that session.
+
+**What you should see:**
+
+The WordPress homepage — a working website with at least one published post and a default theme.
+If the page does not load at all, jump to the [Troubleshooting](#troubleshooting) section.
+
+---
+
+### WordPress Admin Panel
+
+The admin dashboard allows you to manage all website content, users, themes, plugins, and settings.
+
+**URL:**
+
+```
+https://<your_login>.42.fr/wp-admin
+```
+
+**Login credentials:**
+
+| Field    | Value                                                      |
+|----------|------------------------------------------------------------|
+| Username | The value of `WP_ADMIN_USER` in `srcs/.env`                |
+| Password | The content of `secrets/wp_admin_password.txt`             |
+
+**Steps:**
+
+1. Go to `https://<your_login>.42.fr/wp-admin`
+2. Enter your username and password
+3. Click **"Log In"**
+
+---
+
+**What you can do in the admin panel:**
+
+| Section        | What you can do                                                    |
+|----------------|--------------------------------------------------------------------|
+| **Posts**      | Create, edit, publish, and delete blog posts                       |
+| **Pages**      | Create and manage static pages (About, Contact, etc.)             |
+| **Media**      | Upload and organize images, videos, and documents                  |
+| **Comments**   | Moderate, approve, and reply to visitor comments                   |
+| **Appearance** | Change the website theme, menus, and widgets                       |
+| **Plugins**    | Install and activate WordPress plugins                             |
+| **Users**      | Create, edit, and delete user accounts and assign roles            |
+| **Settings**   | Configure the site title, URL, reading, writing, and more          |
+
+---
+
+**The second user account (non-admin):**
+
+A second, regular WordPress user is also created automatically during setup.
+This account can log in to WordPress but has limited access — it cannot change site settings.
+
+| Field    | Value                                                  |
+|----------|--------------------------------------------------------|
+| Username | The value of `WP_USER` in `srcs/.env`                  |
+| Password | The content of `secrets/wp_user_password.txt`          |
+
+---
+
+## Managing Credentials
+
+### Location of All Credentials
+
+All credentials used by the stack are stored in the `secrets/` directory at the **root of the repository**.
+Each file contains exactly one password in plain text.
+
+```
+inception/
+├── secrets/
+│   ├── db_password.txt          ← Password for the MariaDB WordPress user
+│   ├── db_root_password.txt     ← Password for the MariaDB root account
+│   ├── wp_admin_password.txt    ← Password for the WordPress administrator
+│   └── wp_user_password.txt     ← Password for the WordPress regular user
+└── srcs/
+    └── .env                     ← Usernames, database name, domain (no passwords here)
+```
+
+**Full reference table:**
+
+| What                   | Username / identifier                     | Password file                      |
+|------------------------|-------------------------------------------|------------------------------------|
+| WordPress Admin        | `WP_ADMIN_USER` value in `srcs/.env`      | `secrets/wp_admin_password.txt`    |
+| WordPress User         | `WP_USER` value in `srcs/.env`            | `secrets/wp_user_password.txt`     |
+| MariaDB WordPress user | `MYSQL_USER` value in `srcs/.env`         | `secrets/db_password.txt`          |
+| MariaDB root           | `root`                                    | `secrets/db_root_password.txt`     |
+
+---
+
+### How to Read a Credential
+
+```bash
+cat secrets/wp_admin_password.txt
+# Output example: StrongWpAdminPass42!
+
+cat secrets/db_password.txt
+# Output example: StrongMariaDBUserPass42!
+```
+
+---
+
+### How to Change a Password
+
+> **Changing a password requires a full rebuild of the stack** because the passwords are baked into the database during the first initialization.
+
+**Step 1 — Update the secret file:**
+
+```bash
+echo "MyBrandNewPassword!" > secrets/wp_admin_password.txt
+```
+
+**Step 2 — Rebuild and restart everything:**
+
+```bash
+make re
+```
+
+> ⚠️ `make re` will **delete all data** (WordPress files and the entire database) and reinstall from scratch.
+> Back up any important content before doing this.
+
+**Important security rules:**
+
+- ❌ **Never share** the contents of the `secrets/` directory
+- ❌ **Never commit** the `secrets/` directory to Git — it must be listed in `.gitignore`
+- ❌ **Never put passwords** directly in `srcs/.env`, in any Dockerfile, or in `docker-compose.yml`
+- ✅ Treat the `secrets/` folder with the same care as SSH private keys
+
+---
