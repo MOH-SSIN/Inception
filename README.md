@@ -231,8 +231,6 @@ Once running, access the services at:
 
 > 🔐 Credentials are stored in the `srcs/.env` file — never committed to git.
 
-==> ici je dois faire les secrets
-
 ---
 
 ## Resources
