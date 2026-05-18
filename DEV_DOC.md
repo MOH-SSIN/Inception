@@ -397,5 +397,3 @@ ls -la /etc/nginx/ssl/nginx.crt
 **Key Components**:
 - PHP 8.3 with PHP-FPM
 - WP-CLI for automation
-
-
