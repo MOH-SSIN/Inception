@@ -9,6 +9,25 @@
 ## Table of Contents
 
 - [Overview](#overview)
+- [Getting Started](#getting-started)
+- [Accessing Services](#accessing-services)
+  - [WordPress Website](#wordpress-website)
+  - [WordPress Admin Panel](#wordpress-admin-panel)
+- [Managing Credentials](#managing-credentials)
+  - [Location of All Credentials](#location-of-all-credentials)
+  - [How to Read a Credential](#how-to-read-a-credential)
+  - [How to Change a Password](#how-to-change-a-password)
+- [Checking Service Health](#checking-service-health)
+  - [Method 1 — Using Make](#method-1--using-make)
+  - [Method 2 — Checking Logs](#method-2--checking-logs)
+  - [Method 3 — Testing Services Manually](#method-3--testing-services-manually)
+- [Common Tasks](#common-tasks)
+  - [Back Up Your WordPress Files](#back-up-your-wordpress-files)
+  - [Back Up the Database](#back-up-the-database)
+  - [Restore WordPress Files from Backup](#restore-wordpress-files-from-backup)
+  - [Restore the Database from Backup](#restore-the-database-from-backup)
+  - [Check Disk Usage](#check-disk-usage)
+- [Troubleshooting](#troubleshooting)
 
 ---
 
