@@ -149,3 +149,52 @@ Once all containers are up, verify everything is running:
 
 ```bash
 make status
+```
+
+### Start without rebuilding
+
+If the images are already built and you just want to start the containers:
+
+```bash
+make up
+```
+
+### Stop all services (without deleting data)
+
+```bash
+make down
+```
+
+This stops and removes the running containers.
+**All data is preserved** — the WordPress files and the database are untouched.
+
+### Restart all services
+
+```bash
+make restart
+```
+
+Stops and then immediately restarts all containers. Useful after a configuration change.
+
+
+### Full cleanup (warning: deletes all data)
+
+```bash
+make fclean
+```
+
+> **This command is destructive.**
+> It removes all containers, all Docker images, and **all data stored in the volumes**.
+> The WordPress installation and the entire database will be permanently deleted.
+> Only use this if you want to start completely from scratch.
+
+### Rebuild everything from scratch
+
+```bash
+make re
+```
+
+Equivalent to running `make fclean` followed by `make`.
+All images are rebuilt and the stack is started fresh with a clean database.
+
+---
