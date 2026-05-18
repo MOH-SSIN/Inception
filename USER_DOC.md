@@ -394,3 +394,29 @@ docker compose -f srcs/docker-compose.yml logs mariadb
 | **NGINX**     | No errors — NGINX is accepting HTTPS connections on port 443      |
 
 ---
+
+### Method 3 — Testing Services Manually
+
+**Is NGINX responding on port 443?**
+
+```bash
+curl -k https://<your_login>.42.fr
+# Expected: HTML content of the WordPress homepage printed in the terminal
+```
+
+The `-k` flag tells curl to ignore the self-signed certificate warning.
+
+**Is WordPress's PHP engine running?**
+
+```bash
+docker compose -f srcs/docker-compose.yml exec wordpress php -v
+# Expected: PHP version information, e.g. PHP 8.2.x (fpm-fcgi)
+```
+
+**Is MariaDB alive and accepting connections?**
+
+```bash
+docker compose -f srcs/docker-compose.yml exec mariadb \
+  mysqladmin -u root -p$(cat secrets/db_root_password.txt) status
+# Expected: Uptime: ..., Threads: ..., Questions: ..., etc.
+```
