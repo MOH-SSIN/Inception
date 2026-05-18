@@ -334,3 +334,7 @@ volumes:
 3. **Complete Rebuild**: Data persists unless you run `make fclean`
 
 4. **System Reboot**: Data persists (just restart containers with `make up`) 
+
+### Data Recovery
+
+If containers are corrupted or removed:
