@@ -97,6 +97,7 @@ cd inception
 ```bash
 sudo vim /etc/mez-zahi/hosts
 ```
+```
 Add this /home/data
 127.0.0.1 <your_login>.42.fr
 ```
@@ -125,7 +126,3 @@ Update `DOMAIN_NAME` if needed (currently `mez-zahi.42.fr`)
 ---
 
 
-
-## 3. Environment Setup from Scratch
-
-Follow these steps in order the very first time you set up the project.
