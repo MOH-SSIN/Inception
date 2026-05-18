@@ -125,4 +125,13 @@ Update `DOMAIN_NAME` if needed (currently `mez-zahi.42.fr`)
 
 ---
 
+### Setting Up Secrets
+
+The project uses Docker secrets for sensitive data. Secrets are already configured in the `secrets/` directory with default passwords.
+
+**Important**: Never commit actual secret files to Git. The `.gitignore` should exclude them.
+
+---
+
+## Building and Launching
 
