@@ -135,3 +135,55 @@ The project uses Docker secrets for sensitive data. Secrets are already configur
 
 ## Building and Launching
 
+### Using the Makefile
+
+The Makefile provides convenient commands for managing the infrastructure:
+
+**Build and start everything**:
+```bash
+make
+# or
+make all
+```
+
+This command:
+1. Creates data directories (`/home/YOUR_USERNAME/data/`)
+2. Sets proper ownership and permissions
+3. Builds all Docker images
+4. Starts all containers
+
+**Other Makefile targets**:
+
+```bash
+make up         # Start existing containers (no rebuild)
+make down       # Stop all containers
+make logs       # Follow logs for all services
+make status     # Show container status
+make fclean     # Complete cleanup (WARNING: destroys data)
+make re         # Rebuild everything from scratch
+```
+
+### Using Docker Compose Directly
+
+You can also use Docker Compose commands directly:
+
+```bash
+# Navigate to srcs directory
+cd srcs
+
+# Build images
+docker compose build
+
+# Start services
+docker compose up -d
+
+# View logs
+docker compose logs -f
+
+# Stop services
+docker compose down
+
+# View running containers
+docker compose ps
+```
+
