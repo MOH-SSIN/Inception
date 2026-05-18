@@ -39,7 +39,7 @@ inception/
                 └── mariadb.sh
 ```
 Each service has:
-- A **Dockerfile** — builds the image from Alpine Linux
+- A **Dockerfile** — builds the image from Debian Linux
 - A **setup.sh** — the entrypoint script that initializes the service at runtime
 
 ---
@@ -196,16 +196,64 @@ When you run `make `, the following happens:
    mkdir -p /home/YOUR_USERNAME/data/mariadb
    mkdir -p /home/YOUR_USERNAME/data/wordpress
    ```
-
-2. **Ownership Assignment**: Sets proper ownership
-   ```bash
-   chown -R 1337:1337 /home/YOUR_USERNAME/data/wordpress  # www user
-   chown -R 999:999 /home/YOUR_USERNAME/data/mariadb      # mysql user
-   ```
-
-3. **Image Building**: Builds each service's Docker image
+2. **Image Building**: Builds each service's Docker image
    - Reads each Dockerfile
-   - Downloads Alpine Linux base image
+   - Downloads Debian Linux base image
    - Installs required packages
    - Copies configuration files
    - Sets up entrypoints
+
+3. **Container Creation**: Creates containers from images
+
+4. **Network Setup**: Creates the `inception` bridge network
+
+5. **Volume Mounting**: Mounts host directories into containers
+
+6. **Service Startup**: Starts containers in dependency order
+
+## Managing Containers and Volumes
+
+### Container Management
+
+**List running containers**:
+```bash
+docker ps
+```
+
+**List all containers (including stopped)**:
+```bash
+docker ps -a
+```
+
+**View container details**:
+```bash
+docker inspect <container_name>
+```
+
+**Access container shell**:
+```bash
+docker exec -it <container_name> sh
+```
+
+**View container logs**:
+```bash
+docker logs <container_name>
+docker logs -f <container_name>  # Follow logs
+docker logs --tail 100 <container_name>  # Last 100 lines
+```
+
+**Restart a specific container**:
+```bash
+docker restart <container_name>
+```
+
+**Stop a specific container**:
+```bash
+docker stop <container_name>
+```
+
+**Remove a stopped container**:
+```bash
+docker rm <container_name>
+```
+
