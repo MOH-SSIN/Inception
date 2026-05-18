@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# MYSQL_PASSWORD=$(cat /run/secrets/db_password)
-# MYSQL_ROOT_PASSWORD=$(cat /run/secrets/db_root_password)
+MYSQL_PASSWORD=$(cat /run/secrets/db_password)
+MYSQL_ROOT_PASSWORD=$(cat /run/secrets/db_root_password)
 
 # Démarrer MariaDB en arrière-plan pour la configuration
 mysqld_safe --datadir=/var/lib/mysql &

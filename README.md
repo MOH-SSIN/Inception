@@ -124,21 +124,25 @@ Before starting, make sure you have:
 
 ```
 .
-├── Makefile                # The control center: contains commands to build and run the project.
-└── srcs                    # The "brain" of the project containing all source files.
-    ├── .env                    # Private file containing passwords and sensitive configurations.
-    ├── docker-compose.yml      # The master plan that connects all containers together.
-    └── requirements            # The specific folders for each service:
-        ├── mariadb                 # Database service:
-        │   ├── Dockerfile              # Instructions to build the MariaDB image.
-        │   └── tools/mariadb.sh        # Script to initialize the database and users.
-        ├── nginx                   # Web server service:
-        │   ├── Dockerfile              # Instructions to build the NGINX image.
-        │   └── conf/nginx.conf         # Rules for HTTPS and website handling.
-        └── wordpress               # Website service:
-            ├── Dockerfile              # Instructions to build the WordPress image.
-            └── tools/setup.sh          # Script to download and install WordPress automatically.
-
+├── Makefile                    # The control center: contains commands to build and run the project.
+├── secrets
+│   ├── db_password.txt
+│   ├── db_root_password.txt
+│   ├── wp_admin_password.txt
+│   └── wp_user_password.txt
+└── srcs                        # The "brain" of the project containing all source files.
+│   ├── .env                        # Private file containing passwords and sensitive configurations.
+│   ├── docker-compose.yml          # The master plan that connects all containers together.
+│   └── requirements                # The specific folders for each service:
+│   |   ├── mariadb                     # Database service:
+│   |   │   ├── Dockerfile                  # Instructions to build the MariaDB image.
+│   |   │   └── tools/mariadb.sh            # Script to initialize the database and users.
+│   |   ├── nginx                       # Web server service:
+│   |   │   ├── Dockerfile                  # Instructions to build the NGINX image.
+│   |   │   └── conf/nginx.conf             # Rules for HTTPS and website handling.
+│   |   └── wordpress                   # Website service:
+│   |       ├── Dockerfile                  # Instructions to build the WordPress image.
+│   |       └── tools/setup.sh              # Script to download and install WordPress automatically.
 ```
 
 ### Installation
@@ -185,6 +189,20 @@ WP_USER_EMAIL=user@example.com
 WP_USER_PASSWORD=user_password
 
 ```
+
+**5. Create your `secrets` :**
+
+Before starting the project, create the required secret files inside the `secrets/` directory.
+
+Example:
+
+```bash
+mkdir -p secrets
+
+echo "your_db_password" > secrets/db_password.txt
+echo "your_db_root_password" > secrets/db_root_password.txt
+echo "your_wp_admin_password" > secrets/wp_admin_password.txt
+echo "your_wp_user_password" > secrets/wp_user_password.txt
 
 ### Build and Run
 
