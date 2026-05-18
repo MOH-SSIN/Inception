@@ -168,15 +168,6 @@ make down
 This stops and removes the running containers.
 **All data is preserved** — the WordPress files and the database are untouched.
 
-### Restart all services
-
-```bash
-make restart
-```
-
-Stops and then immediately restarts all containers. Useful after a configuration change.
-
-
 ### Full cleanup (warning: deletes all data)
 
 ```bash
@@ -350,5 +341,56 @@ make re
 - ❌ **Never commit** the `secrets/` directory to Git — it must be listed in `.gitignore`
 - ❌ **Never put passwords** directly in `srcs/.env`, in any Dockerfile, or in `docker-compose.yml`
 - ✅ Treat the `secrets/` folder with the same care as SSH private keys
+
+---
+
+## Checking Service Health
+
+### Method 1 — Using Make
+
+The fastest way to check if everything is running:
+
+```bash
+make status
+```
+
+**What to look for:**
+
+| Status      | Meaning                                              |
+|-------------|------------------------------------------------------|
+| `Up`        | Container is running normally                        |
+| `healthy`   | Container passed its health check                    |
+| `Exited`    | Container stopped — there is a problem               |
+| `Restarting`| Container keeps crashing and restarting              |
+
+All 3 containers should show `Up` or `healthy`.
+
+---
+
+### Method 2 — Checking Logs
+
+View live logs from all services combined:
+
+```bash
+make logs
+```
+
+Press `Ctrl + C` to stop streaming.
+
+View logs for one specific service:
+
+```bash
+docker compose -f srcs/docker-compose.yml logs nginx
+docker compose -f srcs/docker-compose.yml logs wordpress
+docker compose -f srcs/docker-compose.yml logs mariadb
+```
+
+**What to look for in the logs:**
+
+| Service       | Signs of healthy startup                                          |
+|---------------|-------------------------------------------------------------------|
+| **MariaDB**   | `ready for connections` — the database is accepting queries       |
+| **WordPress** | `WordPress installed successfully` — WP-CLI finished the install  |
+| **NGINX**     | No errors — NGINX is accepting HTTPS connections on port 443      |
 
 ---
