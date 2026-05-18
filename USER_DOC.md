@@ -551,16 +551,5 @@ If the file was lost or overwritten with the wrong value, you can reset the pass
 ---
 <div align="center">
 
-────────────────────────────────────────
-
-📘 Developer Documentation
-
-All technical details about:
-- Environment setup
-- Makefile structure
-- Docker Compose architecture
-
-are available in: **DEV_DOC.md**
-
-────────────────────────────────────────
+📘 For developer documentation (environment setup, Makefile internals, Docker Compose structure), please refer to **DEV_DOC.md**.
 </div>
