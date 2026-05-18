@@ -90,4 +90,31 @@ posts, pages, comments, users, settings, and plugin data.
 
 ## Getting Started
 
+## Getting Started
+
 ### Prerequisites
+
+Before you start, make sure the following are in place on your machine or Virtual Machine:
+
+- Docker and Docker Compose are installed and running
+- The `make` command is available
+- The project repository has been cloned
+- Your login has been added to `/etc/hosts`:
+
+```bash
+grep "<your_login>.42.fr" /etc/hosts
+# If the line is missing, add it:
+echo "127.0.0.1 <your_login>.42.fr" | sudo tee -a /etc/hosts
+```
+
+- The `secrets/` directory exists at the root of the repository and contains the 4 password files:
+
+```
+secrets/
+├── db_password.txt
+├── db_root_password.txt
+├── wp_admin_password.txt
+└── wp_user_password.txt
+```
+
+If any of these files are missing, refer to the **DEV_DOC.md** to set up the environment from scratch.
