@@ -120,3 +120,15 @@ If any of these files are missing, refer to the **DEV_DOC.md** to set up the env
 ### Starting the Project
 
 All commands must be run from the **root of the repository** (the `inception/` folder).
+
+Open a terminal and navigate to the root of the repository:
+
+```bash
+cd /path/to/inception
+```
+Start the full stack with a single command:
+```bash
+make
+```
+This command builds the Docker images (if not already built) and starts all 3 containers.
+
