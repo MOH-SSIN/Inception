@@ -356,3 +356,45 @@ make build
 
 Your WordPress site and database will be restored automatically from the persistent data.
 
+## Service-Specific Details
+
+### NGINX Service
+
+**Purpose**: Reverse proxy and TLS termination
+
+**Key Configuration**:
+- Listens on port 443 (HTTPS only)
+- TLSv1.3 protocol
+- Self-signed SSL certificates
+- Proxies requests to backend services
+
+**Configuration File**: `srcs/requirements/nginx/conf/nginx.conf`
+
+**Virtual Hosts**:
+1. `YOUR_LOGIN.42.fr` → WordPress (FastCGI to port 9000)
+
+**SSL Certificate Generation**:
+Handled automatically by `setup.sh`:
+```bash
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout /etc/nginx/ssl/nginx.key \
+    -out /etc/nginx/ssl/nginx.crt \
+    -subj "/C=CA/ST=QC/L=Quebec/O=42/OU=42/CN=DOMAIN_NAME OK!!" "
+```
+
+**Testing NGINX**:
+```bash
+docker exec -it nginx sh
+nginx -t  # Test configuration
+cat /etc/nginx/nginx.conf
+ls -la /etc/nginx/ssl/nginx.crt 
+```
+
+### WordPress Service
+
+**Purpose**: Content Management System
+
+**Key Components**:
+- PHP 8.3 with PHP-FPM
+- WP-CLI for automation
+
