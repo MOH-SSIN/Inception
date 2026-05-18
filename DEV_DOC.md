@@ -398,3 +398,4 @@ ls -la /etc/nginx/ssl/nginx.crt
 - PHP 8.3 with PHP-FPM
 - WP-CLI for automation
 
+
