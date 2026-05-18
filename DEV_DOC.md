@@ -325,4 +325,12 @@ volumes:
    - Container: `/var/www/html`
    - Contains: WordPress core, themes, plugins, uploads
 
-   
+### How Data Persists
+
+1. **Container Restart**: Data remains intact (bind mounts are not affected)
+
+2. **Container Removal**: Data remains on host filesystem
+
+3. **Complete Rebuild**: Data persists unless you run `make fclean`
+
+4. **System Reboot**: Data persists (just restart containers with `make up`) 
