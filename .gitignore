@@ -1,0 +1,5 @@
+#env file
+.env
+
+#secret repo
+secrets/
