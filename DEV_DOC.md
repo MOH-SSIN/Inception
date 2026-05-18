@@ -189,13 +189,12 @@ docker compose ps
 
 ### Build Process Details
 
-When you run `make build`, the following happens:
+When you run `make `, the following happens:
 
 1. **Directory Creation**: Creates persistent data directories
    ```bash
    mkdir -p /home/YOUR_USERNAME/data/mariadb
    mkdir -p /home/YOUR_USERNAME/data/wordpress
-   mkdir -p /home/YOUR_USERNAME/data/portainer
    ```
 
 2. **Ownership Assignment**: Sets proper ownership
