@@ -338,3 +338,20 @@ volumes:
 ### Data Recovery
 
 If containers are corrupted or removed:
+
+```bash
+# Stop containers
+make down
+
+# Remove containers and images
+docker container prune -f
+docker image prune -af
+
+# Your data still exists
+ls -la /home/YOUR_USERNAME/data/
+
+# Rebuild and restart
+make build
+```
+
+Your WordPress site and database will be restored automatically from the persistent data.
