@@ -31,7 +31,6 @@ Together they form a complete and secure web infrastructure.
 ```
 
 #### NGINX — The Front Door
---- ------- ---- -------- --
 
 ```
 Internet ──► NGINX (port 443) ──► WordPress ──► MariaDB
