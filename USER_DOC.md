@@ -85,3 +85,9 @@ posts, pages, comments, users, settings, and plugin data.
 | **NGINX**   | Reverse proxy, HTTPS entry point      | Yes — port `443`         | 443   |
 | **WordPress**| PHP CMS, generates web pages         | No — internal only       | 9000  |
 | **MariaDB** | Database, stores all website content  | No — internal only       | 3306  |
+
+---
+
+## Getting Started
+
+### Prerequisites
