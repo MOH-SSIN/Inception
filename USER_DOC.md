@@ -30,7 +30,7 @@ Together they form a complete and secure web infrastructure.
                     └──────────────────────────────────────────────┘
 ```
 
-### NGINX — The Front Door
+#### NGINX — The Front Door
 
 ```
 Internet ──► NGINX (port 443) ──► WordPress ──► MariaDB
@@ -49,7 +49,7 @@ It acts as a **reverse proxy**: it receives every incoming request and decides w
 
 ---
 
-### WordPress — The Website
+#### WordPress — The Website
 
 **WordPress** is the **Content Management System (CMS)** that powers the website.
 It handles all the logic: pages, posts, users, themes, and plugins.
@@ -63,7 +63,7 @@ It handles all the logic: pages, posts, users, themes, and plugins.
 
 ---
 
-### MariaDB — The Database
+#### MariaDB — The Database
 
 **MariaDB** is the **relational database** that stores everything WordPress needs:
 posts, pages, comments, users, settings, and plugin data.
