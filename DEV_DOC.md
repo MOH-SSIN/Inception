@@ -309,3 +309,20 @@ volumes:
         o: bind
         device: /home/${USER}/data/mariadb
 ```
+---
+
+### Data Locations
+
+**Host System** → **Container**:
+
+1. **MariaDB Database**:
+   - Host: `/home/YOUR_USERNAME/data/mariadb`
+   - Container: `/var/lib/mysql`
+   - Contains: Database files, transaction logs
+
+2. **WordPress Files**:
+   - Host: `/home/YOUR_USERNAME/data/wordpress`
+   - Container: `/var/www/html`
+   - Contains: WordPress core, themes, plugins, uploads
+
+   
