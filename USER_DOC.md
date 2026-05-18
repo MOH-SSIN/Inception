@@ -498,6 +498,57 @@ To proceed: click **"Advanced"** → **"Proceed to site"** in your browser.
 
 ---
 
+### The site is not loading — "This site can't be reached"
+
+**Possible causes:**
+
+1. The stack is not running → run `make up` or `make`
+2. The domain is not in `/etc/hosts` → add `127.0.0.1 <your_login>.42.fr` to `/etc/hosts`
+3. NGINX crashed → check `make logs` for errors
+
+```bash
+# Verify the domain is in /etc/hosts
+grep "<your_login>.42.fr" /etc/hosts
+
+# If missing, add it:
+echo "127.0.0.1 <your_login>.42.fr" | sudo tee -a /etc/hosts
+```
+
+---
+
+### The browser shows "ERR_CONNECTION_REFUSED" on port 443
+
+NGINX is not running or failed to start. Check its logs:
+
+```bash
+docker compose -f srcs/docker-compose.yml logs nginx
+```
+
+Look for any error messages related to SSL certificates, config syntax, or port binding.
+
+---
+
+### WordPress shows "Error establishing a database connection"
+
+WordPress cannot reach MariaDB. Possible causes:
+
+- MariaDB has not finished initializing yet — wait 30 seconds and refresh
+- The database credentials do not match between `.env` and `secrets/`
+- The MariaDB container crashed — check `make status` and `make logs`
+
+---
+
+### I forgot the admin password
+
+Read it directly from the secrets file:
+
+```bash
+cat secrets/wp_admin_password.txt
+```
+
+If the file was lost or overwritten with the wrong value, you can reset the password through a `make re` (full rebuild) with a new value in the file.
+
+---
 <div align="center">
 
 For developer documentation (environment setup, Makefile internals, Docker Compose structure), see **DEV_DOC.md**.
