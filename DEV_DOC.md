@@ -355,3 +355,4 @@ make build
 ```
 
 Your WordPress site and database will be restored automatically from the persistent data.
+
