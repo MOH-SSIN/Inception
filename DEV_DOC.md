@@ -5,10 +5,13 @@
 > It covers environment setup, configuration files, secrets, the Makefile, Docker Compose, and data persistence.
 
 ---
+## Environment Setup from Scratch
 
-## 1. Project Overview
+### Project Overview
 
 Inception is a **Docker-based web infrastructure** composed of 3 mandatory services:
+
+### Directory Structure Explanation
 
 ```
 inception/
@@ -35,9 +38,13 @@ inception/
             └── tools/
                 └── mariadb.sh
 ```
+Each service has:
+- A **Dockerfile** — builds the image from Alpine Linux
+- A **setup.sh** — the entrypoint script that initializes the service at runtime
+
 ---
 
-## 2. Prerequisites
+### Prerequisites
 
 The following must be installed and available on your Virtual Machine before starting:
 
@@ -53,7 +60,7 @@ The following must be installed and available on your Virtual Machine before sta
 
 ```bash
 sudo apt update
-sudo apt install -y make git openssl curl
+sudo apt install -y make git openssl curl vim
 
 # Docker Engine
 curl -fsSL https://get.docker.com | sh
@@ -65,12 +72,59 @@ newgrp docker
 
 ```bash
 sudo apk update
-sudo apk add make git openssl curl docker docker-compose
+sudo apk add make git openssl curl docker docker-compose vim
 sudo rc-update add docker default
 sudo service docker start
 ```
 
+**Verify Installation** (all distributions):
+```bash
+docker --version
+docker compose version
+```
+
+### Cloning and Configuring the Project
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd inception
+```
+
+2. Configure your environment:
+
+**a. Update domain name in `/etc/hosts`**:
+```bash
+sudo vim /etc/mez-zahi/hosts
+```
+Add this /home/data
+127.0.0.1 <your_login>.42.fr
+```
+
+**b. Update paths in Makefile**:
+```bash
+vim Makefile
+```
+Change `/home/mez-zahi/data` to match your username:
+```makefile
+/home/YOUR_USERNAME/data
+```
+
+**c. Update paths in docker-compose.yml**:
+```bash
+vim srcs/docker-compose.yml
+```
+Replace all instances of `/home/mez-zahi/data` with `/home/YOUR_USERNAME/data`
+
+**d. Update environment variables**:
+```bash
+nano srcs/.env
+```
+Update `DOMAIN_NAME` if needed (currently `mez-zahi.42.fr`)
+
 ---
+
+
 
 ## 3. Environment Setup from Scratch
 
