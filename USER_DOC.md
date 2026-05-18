@@ -47,7 +47,6 @@ It acts as a **reverse proxy**: it receives every incoming request and decides w
 
 > Think of NGINX as the **reception desk** of the infrastructure — every visitor goes through it first.
 
----
 
 #### WordPress — The Website
 
@@ -61,7 +60,6 @@ It handles all the logic: pages, posts, users, themes, and plugins.
 
 > Think of WordPress as the **engine** of the website — it generates the pages that users see.
 
----
 
 #### MariaDB — The Database
 
