@@ -29,6 +29,10 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
         --admin_password="${WP_ADMIN_PASSWORD}" \
         --admin_email="${WP_ADMIN_EMAIL}" \
         --allow-root
+    
+    echo " start theam "
+    wp theme install variations --allow-root
+    wp theme activate variations --allow-root
 
     wp user create \
         "${WP_USER}" \
