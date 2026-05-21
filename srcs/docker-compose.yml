@@ -8,7 +8,6 @@ services:
       - .env
     secrets:
       - db_password
-      - db_root_password
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:
@@ -72,8 +71,6 @@ networks:
 secrets:
   db_password:
     file: ../secrets/db_password.txt
-  db_root_password:
-    file: ../secrets/db_root_password.txt
   wp_admin_password:
     file: ../secrets/wp_admin_password.txt
   wp_user_password:

@@ -7,5 +7,4 @@ EXPOSE 3306
 COPY tools/mariadb.sh /mariadb.sh
 RUN chmod +x /mariadb.sh
 
-# On utilise ENTRYPOINT pour que le script soit le processus principal
 ENTRYPOINT [ "/mariadb.sh" ]
