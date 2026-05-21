@@ -10,9 +10,8 @@ RUN apt-get update && apt-get install -y \
 
 COPY tools/setup.sh /usr/local/bin/
 
-RUN mkdir -p  /var/www/html
-
-RUN mkdir -p /run/php && chown www-data:www-data /run/php
+RUN mkdir -p /var/www/html /run/php && \
+    chown www-data:www-data /run/php
 
 RUN chmod +x /usr/local/bin/setup.sh
 
@@ -23,4 +22,3 @@ EXPOSE 9000
 WORKDIR /var/www/html
 
 ENTRYPOINT ["/usr/local/bin/setup.sh"]
-# CMD ["/usr/local/bin/setup.sh"]

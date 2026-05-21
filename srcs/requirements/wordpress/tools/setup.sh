@@ -14,7 +14,7 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
 
     wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -O /usr/local/bin/wp
     chmod +x /usr/local/bin/wp
-    cd /var/www/html
+
     wp core download --allow-root 
     mv wp-config-sample.php wp-config.php
     wp config set DB_NAME "${MYSQL_DATABASE}" --allow-root
@@ -30,7 +30,7 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
         --admin_email="${WP_ADMIN_EMAIL}" \
         --allow-root
     
-    echo " start theam "
+    echo " start theme "
     wp theme install variations --allow-root
     wp theme activate variations --allow-root
 
